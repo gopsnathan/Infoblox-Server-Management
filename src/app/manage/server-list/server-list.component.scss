@@ -1,0 +1,61 @@
+.accordion {
+    padding-top: 2em;
+    .accordion-item {
+        margin-bottom: 1em;
+        border: 1px solid rgba(0, 0, 0, 0.175);
+        .accordion-button {
+            color: #000;
+            background-color: #ffffff;
+            .description {
+                font-size: 0.8em;
+            }
+            .status {
+                text-transform: capitalize;
+                .status-icon {
+                    height: 1em;
+                    width: 1em;
+                    margin-bottom: 2px;
+                    margin-right: 0.5em;
+                }
+            }
+            .side-menu {
+                align-self: center;
+                text-align: center;
+            }
+            .dropdown {
+                width: 3%;
+                .dropdown-toggle {
+                    margin-bottom: 0.8em;
+                    text-align: right;
+                }
+                .dropdown-toggle::after {
+                    display: none;
+                }
+            }
+            
+        }
+        .accordion-collapse {
+            background-color: rgba(202, 189, 189, 0.175);
+        }
+        .chkAll {
+            align-self: flex-start;
+        }
+        .row {
+            align-items: center;
+            p {
+                &:not(:first-child) {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    .online {
+        border-left: 2px solid green;
+    }
+    .offline {
+        border-left: 2px solid red;
+    }
+    .pending {
+        border-left: 2px solid blue;
+    }
+}

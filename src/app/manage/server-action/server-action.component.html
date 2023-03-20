@@ -1,0 +1,5 @@
+<div class="btn-group-md" role="group" aria-label="Manage Server Action">
+    <button type="button" class="btn btn-primary" (click)="openServerDetails('create')">Create server</button>
+    <button type="button" class="btn btn-outline-secondary" [disabled]="selectedServers.length !== 1" (click)="openServerDetails('edit')">Edit</button>
+    <button type="button" class="btn btn-outline-secondary" [disabled]="!selectedServers.length" (click)="removeServers()">Remove</button>
+</div>

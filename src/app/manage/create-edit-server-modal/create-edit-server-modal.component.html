@@ -1,0 +1,44 @@
+<ng-template #createEditServerModal>
+    <form class="needs-validation" [formGroup]="serverForm" (ngSubmit)="onSubmit()">
+        <div class="modal-header">
+            <h5 class="modal-title">{{action}} Server</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="onClose()"></button>
+        </div>
+        <div class="modal-body" *ngFor="let server of selectedServers">
+            <div class="form-group mb-3">
+                <label for="server-name" class="form-label"><sup>*</sup>Name</label>
+                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && formControls.name.errors }" id="server-name" formControlName="name" maxlength="256">
+                <div *ngIf="submitted && formControls.name.errors" class="invalid-feedback">
+                  <div *ngIf="formControls.name.errors.required">Name is required</div>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" [ngClass]="{ 'is-invalid': submitted && formControls.description.errors }" formControlName="description" id="description" maxlength="256" placeholder="On-Prem Host description(256 character max)"> </textarea>
+                <div *ngIf="submitted && formControls.description.errors" class="invalid-feedback">
+                    <div *ngIf="formControls.description.errors.required">Description is required</div>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="natSpace" class="form-label">NAT Space</label>
+                <select class="form-select" [ngClass]="{ 'is-invalid': submitted && formControls.natSpace.errors }" id="natSpace" [attr.disabled]="action === 'edit' ? '' : null" formControlName="natSpace" aria-label="NAT Space">
+                    <option *ngFor="let natValue of natList" [value]="natValue.id">{{natValue.name}}</option>
+                </select>
+                <div *ngIf="submitted && formControls.natSpace.errors" class="invalid-feedback">
+                    <div *ngIf="formControls.natSpace.errors.required">NAT Space is required</div>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="ipAddress" class="form-label">IP Address</label>
+                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && formControls.ipAddress.errors }" [attr.disabled]="formControls.natSpace.value ? null : ''" formControlName="ipAddress" id="ipAddress" maxlength="15" />
+                <div *ngIf="submitted && formControls.ipAddress.errors" class="invalid-feedback">
+                    <div *ngIf="formControls.ipAddress.errors.required">IP Address is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()">Close</button>
+            <button type="button" class="btn btn-primary" (click)="onSubmit()">Save changes</button>
+        </div>
+    </form>
+</ng-template>
